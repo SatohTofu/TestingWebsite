@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Your Ultimate Gaming Database</title>
+    <meta name="description" content="Discover, track, and rate your favorite games. Join the ultimate gaming community.">
+    <meta name="keywords" content="games, gaming, database, reviews, ratings, community">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>GameVault</span>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Loading your gaming experience...</p>
+        </div>
+    </div>
+    
+    <!-- Emergency fallback script -->
+    <script>
+        console.log('Emergency script loaded');
+        
+        // Immediate check for console debugging
+        setTimeout(function() {
+            console.log('2 second check - Loading screen status:', 
+                document.getElementById('loading-screen') ? 
+                document.getElementById('loading-screen').style.display : 'not found');
+        }, 2000);
+        
+        // Failsafe to hide loading screen if main script fails
+        setTimeout(function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const originalContent = document.getElementById('original-content');
+            
+            if (loadingScreen && loadingScreen.style.display !== 'none') {
+                console.log('Emergency loading screen failsafe activated');
+                loadingScreen.style.display = 'none';
+                
+                if (originalContent) {
+                    originalContent.style.display = 'block';
+                }
+            }
+        }, 8000); // 8 second emergency fallback
+        
+        // Also add a manual escape hatch
+        document.addEventListener('keydown', function(e) {
+            // Press Escape key to force hide loading screen
+            if (e.key === 'Escape') {
+                const loadingScreen = document.getElementById('loading-screen');
+                const originalContent = document.getElementById('original-content');
+                
+                if (loadingScreen) {
+                    loadingScreen.style.display = 'none';
+                    console.log('Manual loading screen override activated');
+                }
+                
+                if (originalContent) {
+                    originalContent.style.display = 'block';
+                }
+            }
+        });
+    </script>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Logo -->
+                <div class="nav-brand">
+                    <a href="#" class="brand-link">
+                        <i class="fas fa-gamepad brand-icon"></i>
+                        <span class="brand-text">GameVault</span>
+                    </a>
+                </div>
+
+                <!-- Navigation Menu -->
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#games" class="nav-link">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Games</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#reviews" class="nav-link">
+                            <i class="fas fa-star"></i>
+                            <span>Reviews</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#community" class="nav-link">
+                            <i class="fas fa-users"></i>
+                            <span>Community</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#news" class="nav-link">
+                            <i class="fas fa-newspaper"></i>
+                            <span>News</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <input type="text" class="search-input" placeholder="Search games, genres, developers...">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- User Actions -->
+                <div class="nav-actions">
+                    <button class="theme-toggle" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="notifications-btn" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <!-- User Profile (shown when authenticated) -->
+                    <div class="user-profile" style="display: none;">
+                        <img id="nav-user-avatar" src="https://via.placeholder.com/40x40/667eea/ffffff?text=U" alt="User Avatar" class="user-avatar">
+                        <div class="user-dropdown">
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-user"></i>
+                                Profile
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-list"></i>
+                                My Games
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-cog"></i>
+                                Settings
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item" data-logout>
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Guest Actions (shown when not authenticated) -->
+                    <div class="guest-actions">
+                        <button class="btn btn-outline btn-small" id="nav-login-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Sign In
+                        </button>
+                        <button class="btn btn-primary btn-small" id="nav-register-btn">
+                            <i class="fas fa-user-plus"></i>
+                            Sign Up
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Original Content (will be hidden by AuthManager) -->
+        <div id="original-content" style="display: none;">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-background">
+                <div class="hero-overlay"></div>
+                <div class="hero-particles"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="title-main">Discover Amazing</span>
+                        <span class="title-accent">Gaming Worlds</span>
+                    </h1>
+                    <p class="hero-description">
+                        Track, rate, and discover your next favorite game. Join millions of gamers 
+                        in the ultimate gaming database and community platform.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-lg">
+                            <i class="fas fa-rocket"></i>
+                            Start Gaming Journey
+                        </button>
+                        <button class="btn btn-secondary btn-lg">
+                            <i class="fas fa-play"></i>
+                            Watch Trailer
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-cards">
+                        <div class="hero-card hero-card-1">
+                            <img src="https://via.placeholder.com/300x400/667eea/ffffff?text=Game+1" alt="Featured Game">
+                            <div class="card-overlay">
+                                <div class="card-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>9.2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-card hero-card-2">
+                            <img src="https://via.placeholder.com/300x400/f093fb/ffffff?text=Game+2" alt="Featured Game">
+                            <div class="card-overlay">
+                                <div class="card-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>8.7</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-card hero-card-3">
+                            <img src="https://via.placeholder.com/300x400/4facfe/ffffff?text=Game+3" alt="Featured Game">
+                            <div class="card-overlay">
+                                <div class="card-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>9.5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Games Section -->
+        <section class="featured-games-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-fire"></i>
+                        Trending Games
+                    </h2>
+                    <p class="section-subtitle">Discover what's hot in the gaming world</p>
+                </div>
+
+                <div class="games-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-track">
+                            <div class="game-card featured-card">
+                                <div class="card-image">
+                                    <img src="https://via.placeholder.com/350x500/667eea/ffffff?text=Cyberpunk+2077" alt="Cyberpunk 2077">
+                                    <div class="card-badges">
+                                        <span class="badge badge-new">New</span>
+                                        <span class="badge badge-rating">9.1</span>
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="overlay-actions">
+                                            <button class="action-btn" title="Add to List">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                            <button class="action-btn" title="Add to Favorites">
+                                                <i class="fas fa-heart"></i>
+                                            </button>
+                                            <button class="action-btn" title="Quick View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Cyberpunk 2077</h3>
+                                    <p class="card-genre">Action RPG</p>
+                                    <div class="card-stats">
+                                        <div class="stat">
+                                            <i class="fas fa-users"></i>
+                                            <span>2.1M players</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>2020</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="game-card featured-card">
+                                <div class="card-image">
+                                    <img src="https://via.placeholder.com/350x500/f093fb/ffffff?text=The+Witcher+3" alt="The Witcher 3">
+                                    <div class="card-badges">
+                                        <span class="badge badge-popular">Popular</span>
+                                        <span class="badge badge-rating">9.8</span>
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="overlay-actions">
+                                            <button class="action-btn" title="Add to List">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                            <button class="action-btn" title="Add to Favorites">
+                                                <i class="fas fa-heart"></i>
+                                            </button>
+                                            <button class="action-btn" title="Quick View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">The Witcher 3: Wild Hunt</h3>
+                                    <p class="card-genre">Open World RPG</p>
+                                    <div class="card-stats">
+                                        <div class="stat">
+                                            <i class="fas fa-users"></i>
+                                            <span>5.2M players</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>2015</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="game-card featured-card">
+                                <div class="card-image">
+                                    <img src="https://via.placeholder.com/350x500/4facfe/ffffff?text=Elden+Ring" alt="Elden Ring">
+                                    <div class="card-badges">
+                                        <span class="badge badge-trending">Trending</span>
+                                        <span class="badge badge-rating">9.6</span>
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="overlay-actions">
+                                            <button class="action-btn" title="Add to List">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                            <button class="action-btn" title="Add to Favorites">
+                                                <i class="fas fa-heart"></i>
+                                            </button>
+                                            <button class="action-btn" title="Quick View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Elden Ring</h3>
+                                    <p class="card-genre">Action RPG</p>
+                                    <div class="card-stats">
+                                        <div class="stat">
+                                            <i class="fas fa-users"></i>
+                                            <span>3.8M players</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>2022</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="game-card featured-card">
+                                <div class="card-image">
+                                    <img src="https://via.placeholder.com/350x500/fbbf24/ffffff?text=God+of+War" alt="God of War">
+                                    <div class="card-badges">
+                                        <span class="badge badge-exclusive">Exclusive</span>
+                                        <span class="badge badge-rating">9.4</span>
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="overlay-actions">
+                                            <button class="action-btn" title="Add to List">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                            <button class="action-btn" title="Add to Favorites">
+                                                <i class="fas fa-heart"></i>
+                                            </button>
+                                            <button class="action-btn" title="Quick View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">God of War</h3>
+                                    <p class="card-genre">Action Adventure</p>
+                                    <div class="card-stats">
+                                        <div class="stat">
+                                            <i class="fas fa-users"></i>
+                                            <span>2.9M players</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>2018</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn carousel-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn carousel-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" data-target="50000">0</h3>
+                            <p class="stat-label">Games in Database</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" data-target="2500000">0</h3>
+                            <p class="stat-label">Active Gamers</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" data-target="10000000">0</h3>
+                            <p class="stat-label">Reviews Written</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" data-target="500">0</h3>
+                            <p class="stat-label">Game Awards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-th-large"></i>
+                        Browse by Genre
+                    </h2>
+                    <p class="section-subtitle">Find your perfect gaming experience</p>
+                </div>
+
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-background">
+                            <img src="https://via.placeholder.com/400x300/667eea/ffffff?text=Action" alt="Action Games">
+                        </div>
+                        <div class="category-content">
+                            <div class="category-icon">
+                                <i class="fas fa-fist-raised"></i>
+                            </div>
+                            <h3 class="category-title">Action</h3>
+                            <p class="category-count">1,247 games</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-background">
+                            <img src="https://via.placeholder.com/400x300/f093fb/ffffff?text=RPG" alt="RPG Games">
+                        </div>
+                        <div class="category-content">
+                            <div class="category-icon">
+                                <i class="fas fa-dragon"></i>
+                            </div>
+                            <h3 class="category-title">RPG</h3>
+                            <p class="category-count">892 games</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-background">
+                            <img src="https://via.placeholder.com/400x300/4facfe/ffffff?text=Strategy" alt="Strategy Games">
+                        </div>
+                        <div class="category-content">
+                            <div class="category-icon">
+                                <i class="fas fa-chess"></i>
+                            </div>
+                            <h3 class="category-title">Strategy</h3>
+                            <p class="category-count">634 games</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-background">
+                            <img src="https://via.placeholder.com/400x300/fbbf24/ffffff?text=Racing" alt="Racing Games">
+                        </div>
+                        <div class="category-content">
+                            <div class="category-icon">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <h3 class="category-title">Racing</h3>
+                            <p class="category-count">298 games</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-background">
+                            <img src="https://via.placeholder.com/400x300/34d399/ffffff?text=Sports" alt="Sports Games">
+                        </div>
+                        <div class="category-content">
+                            <div class="category-icon">
+                                <i class="fas fa-football-ball"></i>
+                            </div>
+                            <h3 class="category-title">Sports</h3>
+                            <p class="category-count">421 games</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-background">
+                            <img src="https://via.placeholder.com/400x300/ef4444/ffffff?text=Horror" alt="Horror Games">
+                        </div>
+                        <div class="category-content">
+                            <div class="category-icon">
+                                <i class="fas fa-ghost"></i>
+                            </div>
+                            <h3 class="category-title">Horror</h3>
+                            <p class="category-count">156 games</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section class="community-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-users"></i>
+                        Join Our Community
+                    </h2>
+                    <p class="section-subtitle">Connect with fellow gamers worldwide</p>
+                </div>
+
+                <div class="community-grid">
+                    <div class="community-card">
+                        <div class="community-icon">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <h3 class="community-title">Discord Server</h3>
+                        <p class="community-description">Chat with 500K+ gamers in real-time</p>
+                        <button class="btn btn-primary">Join Discord</button>
+                    </div>
+
+                    <div class="community-card">
+                        <div class="community-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="community-title">Forums</h3>
+                        <p class="community-description">Discuss games, share tips, and more</p>
+                        <button class="btn btn-secondary">Visit Forums</button>
+                    </div>
+
+                    <div class="community-card">
+                        <div class="community-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="community-title">Tournaments</h3>
+                        <p class="community-description">Compete in weekly gaming events</p>
+                        <button class="btn btn-accent">Join Tournament</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div> <!-- End Original Content -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-gamepad"></i>
+                        <span>GameVault</span>
+                    </div>
+                    <p class="footer-description">
+                        The ultimate gaming database and community platform for gamers worldwide.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Discover</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Top Games</a></li>
+                        <li><a href="#">New Releases</a></li>
+                        <li><a href="#">Popular Reviews</a></li>
+                        <li><a href="#">Game Rankings</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Forums</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Tournaments</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Bug Reports</a></li>
+                        <li><a href="#">Suggestions</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">
+                        &copy; 2025 GameVault. All rights reserved.
+                    </p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top-btn" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/core/StateManager.js"></script>
+    <script src="assets/js/core/AuthManager.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/carousel.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

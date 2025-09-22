@@ -1,0 +1,775 @@
+/* ==============================================
+   RESPONSIVE DESIGN SYSTEM
+   ============================================== */
+
+/* Mobile First Approach - Base styles are for mobile */
+
+/* ==============================================
+   EXTRA SMALL DEVICES (Portrait phones, less than 576px)
+   ============================================== */
+   
+/* Base mobile styles are already in the main files */
+
+/* ==============================================
+   SMALL DEVICES (Landscape phones, 576px and up)
+   ============================================== */
+
+@media (min-width: 576px) {
+    .container {
+        padding: 0 var(--spacing-6);
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-4xl);
+    }
+    
+    .hero-actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .section-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .games-carousel .carousel-track {
+        gap: var(--spacing-4);
+    }
+    
+    .game-card {
+        min-width: 280px;
+    }
+}
+
+/* ==============================================
+   MEDIUM DEVICES (Tablets, 768px and up)
+   ============================================== */
+
+@media (min-width: 768px) {
+    .search-container {
+        display: block;
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-5xl);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-4xl);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .community-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-bottom-content {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+    
+    /* Game cards responsive sizing */
+    .game-card {
+        min-width: 320px;
+    }
+    
+    /* Category cards height adjustment */
+    .category-card {
+        height: 250px;
+    }
+    
+    /* Navigation improvements */
+    .nav-container {
+        padding: 0 var(--spacing-8);
+    }
+    
+    /* Hero section adjustments */
+    .hero-content {
+        padding: var(--spacing-12);
+    }
+    
+    .hero-description {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* ==============================================
+   LARGE DEVICES (Desktops, 1024px and up)
+   ============================================== */
+
+@media (min-width: 1024px) {
+    .nav-menu {
+        display: flex;
+    }
+    
+    .mobile-menu-toggle {
+        display: none;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+    }
+    
+    .hero-actions {
+        justify-content: flex-start;
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-6xl);
+    }
+    
+    .hero-description {
+        font-size: var(--font-size-xl);
+        max-width: none;
+    }
+    
+    .hero-visual {
+        display: block;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .community-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .footer-content {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+    
+    /* Enhanced game cards */
+    .game-card {
+        min-width: 350px;
+    }
+    
+    .featured-card .card-content {
+        padding: var(--spacing-8);
+    }
+    
+    /* Better carousel spacing */
+    .carousel-track {
+        gap: var(--spacing-8);
+    }
+    
+    /* Section spacing improvements */
+    .featured-games-section,
+    .stats-section,
+    .categories-section,
+    .community-section {
+        padding: var(--spacing-20) 0;
+    }
+}
+
+/* ==============================================
+   EXTRA LARGE DEVICES (Large desktops, 1280px and up)
+   ============================================== */
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: var(--container-xl);
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-7xl);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-5xl);
+    }
+    
+    /* Enhanced spacing for large screens */
+    .hero-content {
+        gap: var(--spacing-20);
+        padding: var(--spacing-16);
+    }
+    
+    .section-header {
+        margin-bottom: var(--spacing-20);
+    }
+    
+    /* Larger game cards for better visibility */
+    .game-card {
+        min-width: 380px;
+    }
+    
+    /* Enhanced category cards */
+    .category-card {
+        height: 300px;
+    }
+    
+    .category-card .category-content {
+        padding: var(--spacing-8);
+    }
+    
+    /* Better carousel controls */
+    .carousel-btn {
+        width: 56px;
+        height: 56px;
+    }
+    
+    /* Enhanced community cards */
+    .community-card {
+        padding: var(--spacing-10);
+    }
+}
+
+/* ==============================================
+   2XL DEVICES (Larger desktops, 1536px and up)
+   ============================================== */
+
+@media (min-width: 1536px) {
+    .container {
+        max-width: var(--container-2xl);
+    }
+    
+    /* Maximum spacing for ultra-wide displays */
+    .hero-content {
+        gap: var(--spacing-24);
+        padding: var(--spacing-20);
+    }
+    
+    .section-header {
+        margin-bottom: var(--spacing-24);
+    }
+    
+    /* Premium game card experience */
+    .game-card {
+        min-width: 400px;
+    }
+    
+    .featured-games-section,
+    .stats-section,
+    .categories-section,
+    .community-section {
+        padding: var(--spacing-24) 0;
+    }
+}
+
+/* ==============================================
+   RESPONSIVE UTILITIES
+   ============================================== */
+
+/* Hide/Show utilities for different screen sizes */
+.hide-mobile {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .hide-mobile {
+        display: initial;
+    }
+    
+    .hide-tablet {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hide-tablet {
+        display: initial;
+    }
+    
+    .hide-desktop {
+        display: none;
+    }
+    
+    .show-mobile {
+        display: none;
+    }
+}
+
+.show-mobile {
+    display: initial;
+}
+
+@media (min-width: 768px) {
+    .show-tablet {
+        display: initial;
+    }
+}
+
+@media (min-width: 1024px) {
+    .show-desktop {
+        display: initial;
+    }
+}
+
+/* ==============================================
+   RESPONSIVE TEXT SIZES
+   ============================================== */
+
+.text-responsive-xs {
+    font-size: var(--font-size-sm);
+}
+
+.text-responsive-sm {
+    font-size: var(--font-size-base);
+}
+
+.text-responsive-base {
+    font-size: var(--font-size-lg);
+}
+
+.text-responsive-lg {
+    font-size: var(--font-size-xl);
+}
+
+.text-responsive-xl {
+    font-size: var(--font-size-2xl);
+}
+
+@media (min-width: 768px) {
+    .text-responsive-xs {
+        font-size: var(--font-size-base);
+    }
+    
+    .text-responsive-sm {
+        font-size: var(--font-size-lg);
+    }
+    
+    .text-responsive-base {
+        font-size: var(--font-size-xl);
+    }
+    
+    .text-responsive-lg {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .text-responsive-xl {
+        font-size: var(--font-size-3xl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .text-responsive-xs {
+        font-size: var(--font-size-lg);
+    }
+    
+    .text-responsive-sm {
+        font-size: var(--font-size-xl);
+    }
+    
+    .text-responsive-base {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .text-responsive-lg {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .text-responsive-xl {
+        font-size: var(--font-size-4xl);
+    }
+}
+
+/* ==============================================
+   RESPONSIVE SPACING
+   ============================================== */
+
+.space-responsive-sm {
+    margin: var(--spacing-4);
+}
+
+.space-responsive-base {
+    margin: var(--spacing-6);
+}
+
+.space-responsive-lg {
+    margin: var(--spacing-8);
+}
+
+@media (min-width: 768px) {
+    .space-responsive-sm {
+        margin: var(--spacing-6);
+    }
+    
+    .space-responsive-base {
+        margin: var(--spacing-8);
+    }
+    
+    .space-responsive-lg {
+        margin: var(--spacing-12);
+    }
+}
+
+@media (min-width: 1024px) {
+    .space-responsive-sm {
+        margin: var(--spacing-8);
+    }
+    
+    .space-responsive-base {
+        margin: var(--spacing-12);
+    }
+    
+    .space-responsive-lg {
+        margin: var(--spacing-16);
+    }
+}
+
+/* ==============================================
+   RESPONSIVE GRID UTILITIES
+   ============================================== */
+
+.grid-responsive-1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+}
+
+.grid-responsive-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+}
+
+.grid-responsive-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+}
+
+.grid-responsive-4 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+}
+
+@media (min-width: 640px) {
+    .grid-responsive-2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-6);
+    }
+    
+    .grid-responsive-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-6);
+    }
+    
+    .grid-responsive-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-6);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-responsive-3 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-8);
+    }
+    
+    .grid-responsive-4 {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-8);
+    }
+}
+
+/* ==============================================
+   RESPONSIVE CARDS
+   ============================================== */
+
+@media (max-width: 767px) {
+    .game-card .card-content {
+        padding: var(--spacing-4);
+    }
+    
+    .game-card .card-title {
+        font-size: var(--font-size-base);
+    }
+    
+    .game-card .card-stats {
+        flex-direction: column;
+        gap: var(--spacing-2);
+    }
+    
+    .category-card {
+        height: 180px;
+    }
+    
+    .category-card .category-content {
+        padding: var(--spacing-4);
+    }
+    
+    .category-card .category-title {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* ==============================================
+   RESPONSIVE HERO SECTION
+   ============================================== */
+
+@media (max-width: 1023px) {
+    .hero-visual {
+        display: none;
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-section {
+        min-height: 80vh;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 639px) {
+    .hero-actions {
+        flex-direction: column;
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .hero-description {
+        font-size: var(--font-size-base);
+    }
+}
+
+/* ==============================================
+   RESPONSIVE NAVIGATION
+   ============================================== */
+
+@media (max-width: 1023px) {
+    .nav-menu {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        background: var(--color-surface);
+        border-top: 1px solid var(--color-border);
+        padding: var(--spacing-6);
+        flex-direction: column;
+        gap: var(--spacing-4);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-base);
+        z-index: var(--z-dropdown);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-link {
+        justify-content: center;
+        padding: var(--spacing-4);
+        border-radius: var(--radius-lg);
+        font-size: var(--font-size-lg);
+    }
+}
+
+@media (max-width: 767px) {
+    .search-container {
+        display: none;
+    }
+    
+    .nav-container {
+        padding: 0 var(--spacing-4);
+    }
+    
+    .nav-actions {
+        gap: var(--spacing-2);
+    }
+    
+    .theme-toggle,
+    .notifications-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* ==============================================
+   RESPONSIVE CAROUSEL
+   ============================================== */
+
+@media (max-width: 767px) {
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-prev {
+        left: var(--spacing-2);
+    }
+    
+    .carousel-next {
+        right: var(--spacing-2);
+    }
+    
+    .games-carousel .carousel-track {
+        padding: var(--spacing-4) 0;
+    }
+}
+
+/* ==============================================
+   RESPONSIVE STATS SECTION
+   ============================================== */
+
+.stat-card {
+    text-align: center;
+    padding: var(--spacing-6);
+    background: var(--color-surface);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-base);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+}
+
+.stat-icon {
+    font-size: var(--font-size-3xl);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-4);
+}
+
+.stat-number {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+.stat-label {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+}
+
+@media (max-width: 767px) {
+    .stat-card {
+        padding: var(--spacing-4);
+    }
+    
+    .stat-icon {
+        font-size: var(--font-size-2xl);
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .stat-number {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .stat-label {
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* ==============================================
+   RESPONSIVE COMMUNITY SECTION
+   ============================================== */
+
+.community-card {
+    text-align: center;
+    padding: var(--spacing-8);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    transition: all var(--transition-base);
+}
+
+.community-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary);
+}
+
+.community-icon {
+    font-size: var(--font-size-4xl);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-4);
+}
+
+.community-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-3);
+}
+
+.community-description {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-6);
+    line-height: var(--line-height-relaxed);
+}
+
+@media (max-width: 767px) {
+    .community-card {
+        padding: var(--spacing-6);
+    }
+    
+    .community-icon {
+        font-size: var(--font-size-3xl);
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .community-title {
+        font-size: var(--font-size-lg);
+    }
+    
+    .community-description {
+        font-size: var(--font-size-sm);
+        margin-bottom: var(--spacing-4);
+    }
+}
+
+/* ==============================================
+   RESPONSIVE PERFORMANCE
+   ============================================== */
+
+/* Optimize animations for smaller screens */
+@media (max-width: 767px) {
+    .hover-lift:hover {
+        transform: translateY(-2px);
+    }
+    
+    .hover-scale:hover {
+        transform: scale(1.02);
+    }
+    
+    /* Reduce animation intensity on mobile */
+    .animate-float {
+        animation-duration: 8s;
+    }
+    
+    .hero-card {
+        animation-duration: 8s;
+    }
+}
